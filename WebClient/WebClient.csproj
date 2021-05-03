@@ -4,4 +4,24 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.json" Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="src\site.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\ICommunicator.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\ICommunicator.ts" />
+  </ItemGroup>
 </Project>

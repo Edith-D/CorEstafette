@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.809.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorEstafette", "CorEstafette\CorEstafette.csproj", "{C6D16B34-DF95-43A0-8F03-F66124E041C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "WPFClient\WPFClient.csproj", "{4D36CE30-1474-4201-B9CF-4F7796F95544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFClient", "WPFClient\WPFClient.csproj", "{4D36CE30-1474-4201-B9CF-4F7796F95544}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRCommunicator", "Shared\SignalRCommunicator.csproj", "{1F4D49A6-3246-47F1-A0EC-B282B6CC3D20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{1B1EEC10-7DF8-484C-9571-F294592DD05B}"
 EndProject
@@ -27,6 +29,10 @@ Global
 		{1B1EEC10-7DF8-484C-9571-F294592DD05B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B1EEC10-7DF8-484C-9571-F294592DD05B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B1EEC10-7DF8-484C-9571-F294592DD05B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4D49A6-3246-47F1-A0EC-B282B6CC3D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4D49A6-3246-47F1-A0EC-B282B6CC3D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4D49A6-3246-47F1-A0EC-B282B6CC3D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4D49A6-3246-47F1-A0EC-B282B6CC3D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

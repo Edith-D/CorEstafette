@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="CorEstafette -- Client WPF" Width="600">
+    <Grid Background="Cornsilk">
+        
+        <StackPanel Grid.ColumnSpan="2">
+            <GroupBox Header="Publishing :" Margin="5,5,5,0">
+                <StackPanel Margin="5,5,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Topic: " Width="60" />
+                        <TextBox x:Name="TopicText" Text="{Binding Topic}" Margin="5,5,5,0" Width="490" Height="17.96"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Message: " Width="60" />
+                        <TextBox x:Name="ContentText" Text="{Binding Content}" Margin="5,5,5,0" Width="490" Height="17.96"/>
+                    </StackPanel>
+                    <Button Content="Publish Message" Command="{Binding PublishMessage}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Subscribe to:" Margin="5,5,5,0">
+                <StackPanel Margin="5,5,5,5">
+                    <TextBox x:Name="SubscribeText" Text="{Binding SubscribeTopic}" Margin="5,5,5,0" />
+                    <Button Content="Subscribe" Command="{Binding SubscribeCommand}" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Unsubscribe to:" Margin="5,5,5,0">
+                <StackPanel Margin="5,5,5,5">
+                    <TextBox x:Name="UnsubscribeText" Text="{Binding UnsubscribeTopic}" Margin="5,5,5,0" />
+                    <Button Content="Unsubscribe" Command="{Binding UnsubscribeCommand}" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Messages:" Margin="5,5,5,0" Height="150">
+                <StackPanel Margin="5,5,5,3">
+                    <TextBlock x:Name="Messages" Text="{Binding Path=Messages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,0" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Log Messages:" Margin="5,5,5,5" Height="150">
+                <StackPanel Margin="5,5,5,5">
+                    <TextBlock x:Name="LogMessages" Text="{Binding Path=LogMessages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,0" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
 
     </Grid>
 </Window>

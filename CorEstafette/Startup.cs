@@ -26,8 +26,12 @@ namespace CorEstafette
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddSignalR();//configure signalR hubs
-        }
+            services.AddCors();
+            services.AddSignalR().AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.PropertyNamingPolicy = null;//configure signalR hubs
+            });
+         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,6 +50,22 @@ namespace CorEstafette
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("https://localhost:5003")
+                    .AllowAnyHeader()
+                    .WithMethods("GET", "POST")
+                    .AllowCredentials();
+            });
+
+            //app.UseCors(builder =>
+            //{
+            //    builder.WithOrigins("https://localhost:5003")
+            //        .AllowAnyHeader()
+            //        .WithMethods("GET", "POST")
+            //        .AllowCredentials();
+            //});
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -53,7 +73,8 @@ namespace CorEstafette
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapHub<TestHub>("/testhub"); //for testing purpose
+                endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/signalRhub");
             });
         }
     }
