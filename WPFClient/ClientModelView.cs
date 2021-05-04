@@ -59,6 +59,7 @@ namespace WPFClient
                 Messages = response.Content + Environment.NewLine + Messages;
                 OnPropertyChanged(nameof(Messages));
             });
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

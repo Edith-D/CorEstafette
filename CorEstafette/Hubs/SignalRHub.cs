@@ -14,30 +14,30 @@ namespace CorEstafette.Hubs
         {
             var success = UserConnections.TryAdd(userName, Context.ConnectionId);
             string content = $"Username {userName} {(success ? "added successfully" : "already exists")} in the repertory.";
-            return new Response(userName, null, content, true);
+            return new Response(userName, content, true);
         }
-        public async Task PublishAsync(Message message)
+        public async Task PublishAsync(MessageWithTopic message)
         {
             await Clients.OthersInGroup(message.Topic).SendAsync("OnPublish", message);
         }
 
         //method for client to subscribe for a topic
-        public async Task<IResponse> SubscribeTopicAsync(Message message)
+        public async Task<IResponse> SubscribeTopicAsync(MessageWithTopic message)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, message.Topic);
             string str = Context.User.Identity.Name;
             string str2 = Context.UserIdentifier;
             
             message.Content = $"{message.Sender} successfully subscribed to topic {message.Topic}";
-            return new Response(message, true);
+            return new Response(true, message.CorrelationId, message.Content, message.Sender, message.Timestamp);
         }
 
         //method for client to unsubscribe from a topic
-        public async Task<IResponse> UnsubscribeTopicAsync(Message message)
+        public async Task<IResponse> UnsubscribeTopicAsync(MessageWithTopic message)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, message.Topic);
             message.Content = $"{message.Sender} successfully unsubscribe from topic {message.Topic}";
-            return new Response(message, true);
+            return new Response(true, message.CorrelationId, message.Content, message.Sender, message.Timestamp);
         }
 
         public override Task OnDisconnectedAsync(System.Exception exception)

@@ -4,10 +4,9 @@ namespace SignalRCommunicator
 {
     public interface IMessage
     {
-        string CorrelationId { get; }
-        string Topic { get; }
-        string Content { get; }
-        string Sender { get; }
-        DateTime Timestamp { get; }
+        public string CorrelationId { get; }
+        public string Content { get; }
+        public string Sender { get; }
+        public DateTime Timestamp { get; }
     }
 }

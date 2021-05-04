@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Newtonsoft.Json;
 
 namespace SignalRCommunicator
 {
     [Serializable]
-    public class Message : IMessage
+    public class MessageWithTopic : IMessageWithTopic
     {
         [JsonProperty]
         public string CorrelationId { get; set; }
@@ -18,19 +23,23 @@ namespace SignalRCommunicator
         [JsonProperty]
         public DateTime Timestamp { get; set; }
 
-        public Message()
+        [JsonProperty]
+        public string Topic { get; set; }
+
+        public MessageWithTopic()
         {
             CorrelationId = Guid.NewGuid().ToString();
         }
-        
-        public Message( 
+
+        public MessageWithTopic(
+            string topic,
             string content,
             string sender) : this()
         {
+            Topic = topic;
             Content = content;
-            Timestamp = DateTime.Now;
             Sender = sender;
+            Timestamp = DateTime.Now;
         }
-
     }
 }
